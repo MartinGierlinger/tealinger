@@ -1,16 +1,86 @@
 ---
-
+import Layout from '../layout/Layout.astro';
+import "../styles/global.css";
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<Layout title="Premium Tee erleben">
+	<section class="py-16 md:py-24 bg-tealinger-light rounded-3xl px-8 mb-16" aria-labelledby="hero-heading">
+		<div class="max-w-3xl">
+			<h1 id="hero-heading" class="text-5xl md:text-6xl font-extrabold text-tealinger-dark mb-6 leading-tight">
+				Die Kunst des Tees, <br />
+				<span class="text-tealinger-base">rein und unverfälscht.</span>
+			</h1>
+			<p class="text-xl text-gray-700 mb-8 max-w-xl">
+				Entdecken Sie handverlesene Teesorten bei Tealinger. Von traditionellen Klassikern 
+				bis hin zu exklusiven Raritäten – nachhaltig bezogen und für höchsten Genuss kuratiert.
+			</p>
+			<div class="flex flex-wrap gap-4">
+				<a href="/shop" class="bg-tealinger-base hover:bg-tealinger-dark text-white text-lg font-bold py-4 px-8 rounded-lg focus:ring-4 focus:ring-green-300 transition-all inline-block">
+					Jetzt Sortiment ansehen
+				</a>
+				<a href="#philosophie" class="bg-white border-2 border-tealinger-base text-tealinger-base hover:bg-gray-50 text-lg font-bold py-4 px-8 rounded-lg focus:ring-4 focus:ring-green-300 transition-all inline-block">
+					Unsere Philosophie
+				</a>
+			</div>
+		</div>
+	</section>
+
+	<section id="philosophie" class="mb-20" aria-labelledby="features-heading">
+		<h2 id="features-heading" class="sr-only">Unsere Werte</h2>
+		<div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+			<div class="flex flex-col items-start">
+				<div class="w-12 h-12 bg-tealinger-base text-white rounded-full flex items-center justify-center mb-4" aria-hidden="true">
+					<span class="font-bold">01</span>
+				</div>
+				<h3 class="text-2xl font-bold mb-3">Höchste Qualität</h3>
+				<p class="text-gray-600">
+					Jedes Blatt wird nach strengsten Kriterien geprüft. Wir arbeiten direkt mit Teegärten zusammen, um Frische zu garantieren.
+				</p>
+			</div>
+			<div class="flex flex-col items-start">
+				<div class="w-12 h-12 bg-tealinger-base text-white rounded-full flex items-center justify-center mb-4" aria-hidden="true">
+					<span class="font-bold">02</span>
+				</div>
+				<h3 class="text-2xl font-bold mb-3">Nachhaltigkeit</h3>
+				<p class="text-gray-600">
+					Unsere Verpackungen sind plastikfrei und vollständig kompostierbar. Wir setzen auf faire Handelswege ohne Kompromisse.
+				</p>
+			</div>
+			<div class="flex flex-col items-start">
+				<div class="w-12 h-12 bg-tealinger-base text-white rounded-full flex items-center justify-center mb-4" aria-hidden="true">
+					<span class="font-bold">03</span>
+				</div>
+				<h3 class="text-2xl font-bold mb-3">Static & Secure</h3>
+				<p class="text-gray-600">
+					Als rein statisches Projekt an der TU Wien konzipiert, bietet diese Seite maximale Performance und Sicherheit durch "Security by Design".
+				</p>
+			</div>
+		</div>
+	</section>
+
+	<section class="border-t border-gray-100 pt-16 mb-16" aria-labelledby="cat-heading">
+		<div class="flex justify-between items-end mb-8">
+			<div>
+				<h2 id="cat-heading" class="text-3xl font-bold">Beliebte Kategorien</h2>
+				<p class="text-gray-600">Finden Sie den Tee, der zu Ihrem Moment passt.</p>
+			</div>
+			<a href="/shop" class="text-tealinger-base font-bold hover:underline underline-offset-4 decoration-2">Alle Produkte →</a>
+		</div>
+		
+		<div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+			<a href="/shop" class="group relative overflow-hidden rounded-xl bg-gray-100 h-64 flex items-end p-8 focus:ring-4 focus:ring-tealinger-base outline-none">
+				<div class="relative z-10">
+					<span class="text-sm font-bold uppercase tracking-wider text-tealinger-dark">Klassiker</span>
+					<h3 class="text-2xl font-bold">Grüner Tee</h3>
+				</div>
+				<div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent group-hover:from-black/30 transition-all"></div>
+			</a>
+			<a href="/shop" class="group relative overflow-hidden rounded-xl bg-gray-100 h-64 flex items-end p-8 focus:ring-4 focus:ring-tealinger-base outline-none">
+				<div class="relative z-10">
+					<span class="text-sm font-bold uppercase tracking-wider text-tealinger-dark">Kräftig</span>
+					<h3 class="text-2xl font-bold">Schwarzer Tee</h3>
+				</div>
+				<div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent group-hover:from-black/30 transition-all"></div>
+			</a>
+		</div>
+	</section>

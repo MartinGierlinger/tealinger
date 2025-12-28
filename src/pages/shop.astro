@@ -1,0 +1,29 @@
+---
+import Layout from '../layout/Layout.astro';
+import ProductCard from '../components/ProductCard.astro';
+import "../styles/global.css";
+
+const teas = [
+	{ name: "Grüner Sencha", price: "12,90", description: "Bio-Grüntee aus Japan, besonders mild im Geschmack." },
+	{ name: "Earl Grey Classic", price: "9,50", description: "Schwarzer Tee mit feiner Bergamotte-Note." },
+	{ name: "Kamillenblüte", price: "7,20", description: "Beruhigender Kräutertee aus kontrolliertem Anbau." },
+	{ name: "Assam Special", price: "11,00", description: "Kräftiger schwarzer Tee, ideal mit Milch und Zucker." }
+];
+---
+
+<Layout title="Tee Shop">
+	<h1 class="text-4xl font-extrabold mb-8 text-tealinger-base">Unser Sortiment</h1>
+	
+	<section aria-labelledby="product-heading">
+		<h2 id="product-heading" class="sr-only">Produkte</h2>
+		<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+			{teas.map(tea => (
+				<ProductCard 
+					name={tea.name} 
+					price={tea.price} 
+					description={tea.description} 
+				/>
+			))}
+		</div>
+	</section>
+</Layout>
