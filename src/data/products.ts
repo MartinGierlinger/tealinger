@@ -169,13 +169,25 @@ export const products: TeaProduct[] = [
     preparation: { temp: 100, time: 10, amount: "5g" }
   },
   {
-    id: "t-012",
+    id: "t-013",
     name: "Tealinger Haferl",
     slug: "tealinger-haferl",
-    price: 19.90,
+    price: 29.90,
     category: "Zubehör",
     description: "Einzigartiges Haferl für den vielseitigen Genuss und perfekt für einen ruhigen Nachmittag. Am beliebtesten gefüllt mit Tealinger's erstklassigem Tee",
     image: "Haferl.png",
+    isBestSeller: false,
+    inStock: true,
+    preparation: { temp: 0, time: 0, amount: "0" }
+  },
+{
+    id: "t-014",
+    name: "Tealinger Teedose {Spezial}",
+    slug: "tealinger-teedose",
+    price: 49.90,
+    category: "Zubehör",
+    description: "Tealingers Teedose mit außergewöhnlichem Design, für erstklassigen Tee. Für den Tee als auch als Dekoration wunderbar verwendbar.",
+    image: "TealingerTeedose.png",
     isBestSeller: true,
     inStock: true,
     preparation: { temp: 0, time: 0, amount: "0" }
