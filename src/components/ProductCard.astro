@@ -1,5 +1,6 @@
 ---
 import type { TeaProduct } from '../data/products';
+import AddToCart from './AddToCart.astro';
 
 interface Props {
 	product: TeaProduct
@@ -24,9 +25,7 @@ const imagePath = `${base}/Products/${product.image}`;
     
     <div class="footer">
       <span class="price">{product.price.toFixed(2)} €</span>
-      <button disabled={!product.inStock}>
-        {product.inStock ? 'In den Warenkorb' : 'Bald verfügbar'}
-      </button>
+     	<AddToCart product={product} /> 
     </div>
   </div>
 </article>

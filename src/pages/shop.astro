@@ -3,19 +3,129 @@ import Layout from '../layout/Layout.astro';
 import ProductCard from '../components/ProductCard.astro';
 import { products } from '../data/products';
 import "../styles/global.css";
+
 ---
 
 <Layout title="Tee Shop">
     <h1 class="text-4xl font-extrabold mb-8 text-tealinger-base">Unser Sortiment</h1>
+    
+    <div class="mb-8 flex flex-wrap gap-4" id="filter-container">
+        <button 
+            class="filter-btn active bg-gray-200 hover:bg-gray-300 px-4 py-2 rounded-full font-semibold transition-colors" 
+            data-filter="all"
+        >
+            Alle
+        </button>
+        <button 
+            class="filter-btn bg-gray-100 hover:bg-gray-200 px-4 py-2 rounded-full font-semibold transition-colors" 
+            data-filter="Grüntee"
+        >
+            Grüntee
+        </button>
+        <button 
+            class="filter-btn bg-gray-100 hover:bg-gray-200 px-4 py-2 rounded-full font-semibold transition-colors" 
+            data-filter="Schwarztee"
+        >
+            Schwarztee
+        </button>
+		        <button 
+            class="filter-btn bg-gray-100 hover:bg-gray-200 px-4 py-2 rounded-full font-semibold transition-colors" 
+            data-filter="Oolong Tee"
+        >
+            Oolong Tee
+
+        </button>
+		        <button 
+            class="filter-btn bg-gray-100 hover:bg-gray-200 px-4 py-2 rounded-full font-semibold transition-colors" 
+            data-filter="Weißer Tee"
+        >
+            Weißer Tee
+        </button>
+        <button 
+            class="filter-btn bg-gray-100 hover:bg-gray-200 px-4 py-2 rounded-full font-semibold transition-colors" 
+            data-filter="Kräutertee"
+        >
+            Kräutertee
+        </button>
+    </div>
     
     <section aria-labelledby="product-heading">
         <h2 id="product-heading" class="sr-only">Produkte</h2>
         
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {products.map((product) => (
-                <ProductCard product={product} />
+                // WICHTIG: Das Wrapper-Div mit data-category für das Script
+                <div class="product-item transition-all duration-300" data-category={product.category}>
+                    <ProductCard product={product} />
+                </div>
             ))}
         </div>
         
+        <p id="no-results" class="hidden text-gray-500 text-lg mt-8">
+            Keine Produkte in dieser Kategorie gefunden.
+        </p>
     </section>
 </Layout>
+
+<script>
+    // Selektoren
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const productItems = document.querySelectorAll('.product-item');
+    const noResultsMsg = document.getElementById('no-results');
+
+    filterButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            // 1. Aktiven Button Status aktualisieren
+            // Entferne 'bg-gray-200' (aktiv) und setze 'bg-gray-100' (inaktiv) für alle
+            filterButtons.forEach(btn => {
+                btn.classList.remove('bg-gray-200', 'active'); // Visuell aktiv
+                btn.classList.add('bg-gray-100');
+            });
+            
+            // Setze den geklickten Button auf aktiv
+            button.classList.remove('bg-gray-100');
+            button.classList.add('bg-gray-200', 'active');
+
+            // 2. Filtern
+            const categoryToFilter = (button as HTMLElement).dataset.filter;
+            let visibleCount = 0;
+
+            productItems.forEach((item) => {
+                const itemCategory = (item as HTMLElement).dataset.category;
+
+                // Prüfen: Ist "all" gewählt ODER stimmt die Kategorie überein?
+                // Hinweis: Wir vergleichen Strings, achte auf Groß-/Kleinschreibung in data/products.ts
+                console.log(itemCategory)
+                console.log(categoryToFilter)
+				if (categoryToFilter === 'all' || itemCategory === categoryToFilter) {
+                    item.classList.remove('hidden');
+                    visibleCount++;
+                } else {
+                    item.classList.add('hidden');
+                }
+            });
+
+            // 3. "Keine Ergebnisse" anzeigen falls nötig
+            if (noResultsMsg) {
+                if (visibleCount === 0) {
+                    noResultsMsg.classList.remove('hidden');
+                } else {
+                    noResultsMsg.classList.add('hidden');
+                }
+            }
+        });
+    });
+</script>
+
+<style>
+    /* Hilfsklasse, falls Tailwind 'hidden' nicht sofort greift oder überschrieben wird */
+    .hidden {
+        display: none !important;
+    }
+    
+    /* Optik für den aktiven Button */
+    .filter-btn.active {
+        background-color: var(--color-tealinger-dark); /* Deine dunkle Farbe */
+        color: white;
+    }
+</style>

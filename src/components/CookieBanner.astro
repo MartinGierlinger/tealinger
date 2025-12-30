@@ -1,0 +1,100 @@
+---
+/* Props falls du den Link zur Datenschutzerklärung dynamisch machen willst */
+interface Props {
+  privacyLink?: string;
+}
+
+const { privacyLink = "/tealinger/datenschutz" } = Astro.props;
+---
+
+<div 
+  id="cookie-banner" 
+  class="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.1)] z-50 transform translate-y-full transition-transform duration-300 hidden"
+>
+  <div class="max-w-7xl mx-auto p-4 md:p-6 flex flex-col md:flex-row items-center justify-between gap-4">
+    
+    <div class="text-sm text-gray-600 flex-1">
+      <h3 class="font-bold text-lg text-gray-900 mb-1">Wir nutzen Cookies 🍪</h3>
+      <p>
+        Wir verwenden Cookies, um Ihre Erfahrung zu verbessern. Einige sind essenziell, andere helfen uns, 
+        die Nutzung der Seite zu analysieren.
+        <a href={privacyLink} class="underline hover:text-tealinger-base">Datenschutzerklärung lesen</a>.
+      </p>
+    </div>
+
+    <div class="flex gap-3 shrink-0">
+      <button 
+        id="cookie-reject"
+        class="px-4 py-2 border border-gray-300 rounded text-gray-700 hover:bg-gray-50 font-medium transition-colors"
+      >
+        Nur Essenzielle
+      </button>
+      <button 
+        id="cookie-accept"
+        class="px-4 py-2 bg-tealinger-base text-white rounded hover:bg-tealinger-dark font-medium transition-colors"
+      >
+        Alle akzeptieren
+      </button>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  // Schlüssel für LocalStorage
+  const CONSENT_KEY = 'cookie-consent';
+
+  const banner = document.getElementById('cookie-banner');
+  const acceptBtn = document.getElementById('cookie-accept');
+  const rejectBtn = document.getElementById('cookie-reject');
+
+  // Funktion: Skripte nachträglich laden (z.B. Analytics)
+  function loadAnalytics() {
+    console.log('Analytics Skripte werden geladen...');
+    // Beispiel: Hier würdest du Google Analytics initialisieren
+    // window.dataLayer = window.dataLayer || [];
+    // function gtag(){dataLayer.push(arguments);}
+    // gtag('js', new Date());
+    // gtag('config', 'DEINE-ID');
+  }
+
+  // Check beim Laden
+  const consent = localStorage.getItem(CONSENT_KEY);
+
+  if (!consent) {
+    // Zeige Banner nach kurzer Verzögerung für schöne Animation
+    banner?.classList.remove('hidden');
+    setTimeout(() => {
+      banner?.classList.remove('translate-y-full');
+    }, 100);
+  } else if (consent === 'accepted') {
+    loadAnalytics();
+  }
+
+  // Handler: Akzeptieren
+  acceptBtn?.addEventListener('click', () => {
+    localStorage.setItem(CONSENT_KEY, 'accepted');
+    hideBanner();
+    loadAnalytics();
+  });
+
+  // Handler: Ablehnen
+  rejectBtn?.addEventListener('click', () => {
+    localStorage.setItem(CONSENT_KEY, 'rejected');
+    hideBanner();
+  });
+
+  function hideBanner() {
+    banner?.classList.add('translate-y-full');
+    setTimeout(() => {
+      banner?.classList.add('hidden');
+    }, 300); // Warte auf Animation
+  }
+</script>
+
+<style>
+  /* Fallback für Farben, falls Tailwind Config fehlt */
+  .bg-tealinger-base { background-color: var(--color-tealinger-base, #10b981); }
+  .hover\:bg-tealinger-dark:hover { background-color: var(--color-tealinger-dark, #059669); }
+  .text-tealinger-base { color: var(--color-tealinger-base, #10b981); }
+</style>

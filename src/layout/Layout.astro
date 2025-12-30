@@ -1,6 +1,7 @@
 ---
 import { Image } from 'astro:assets';
 import TealingerLogo from '../assets/Tealinger_Wortbildmarke.png'
+import CookieBanner from '../components/CookieBanner.astro';
 
 interface Props {
 	title: string;
@@ -29,6 +30,7 @@ const currentYear = new Date().getFullYear();
 				<ul class="flex gap-6">
 					<li><a href="/tealinger" class="hover:underline decoration-2 underline-offset-4">Home</a></li>
 					<li><a href="/tealinger/shop" class="hover:underline decoration-2 underline-offset-4">Shop</a></li>
+					<li><a href="/tealinger/warenkorb" class="hover:underline decoration-2 underline-offset-4">Warenkorb</a></li>
 				</ul>
 			</nav>
 		</header>
@@ -114,5 +116,6 @@ const currentYear = new Date().getFullYear();
         </div>
     </div>
 </footer>
+	<CookieBanner />
 	</body>
 </html>

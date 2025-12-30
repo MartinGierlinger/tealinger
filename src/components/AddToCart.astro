@@ -1,0 +1,65 @@
+---
+import type { TeaProduct } from '../data/products';
+
+interface Props {
+  product: TeaProduct;
+}
+
+const { product } = Astro.props;
+---
+
+<div class="add-to-cart-wrapper">
+    <button 
+      class="add-to-cart-btn focus:ring-4 focus:ring-green-600 focus:outline-none" 
+      data-product={JSON.stringify(product)}
+      disabled={!product.inStock}
+      aria-label={`${product.name} in den Warenkorb legen`}
+    >
+      {product.inStock ? 'In den Warenkorb' : 'Bald verfügbar'}
+    </button>
+    
+    <span class="sr-only status-message" aria-live="polite"></span>
+</div>
+
+<style>
+  button {
+    background: var(--color-tealinger-dark);
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  
+  button:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+  }
+
+  button:hover:not(:disabled) {
+    background: var(--color-tealinger-base);
+  }
+</style>
+
+<script>
+  import { addProductToCart } from '../stores/cartStore';
+  import type { TeaProduct } from '../data/products';
+
+  // Event Listener für alle Buttons auf der Seite
+  const buttons = document.querySelectorAll('.add-to-cart-btn');
+
+  buttons.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      const target = e.target as HTMLButtonElement;
+      const productData = JSON.parse(target.dataset.product || '{}') as TeaProduct;
+      
+      addProductToCart(productData);
+      
+      // Kleines visuelles Feedback
+      const originalText = target.innerText;
+      target.innerText = "Hinzugefügt ✓";
+      setTimeout(() => target.innerText = originalText, 1000);
+    });
+  });
+</script>
