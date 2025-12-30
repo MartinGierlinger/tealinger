@@ -3,7 +3,7 @@ export interface TeaProduct {
   name: string;
   slug: string;
   price: number;
-  category: 'Schwarztee' | 'Grüntee' | 'Weißer Tee' | 'Oolong Tee' | 'Kräutertee' | 'Früchtetee';
+  category: 'Schwarztee' | 'Grüntee' | 'Weißer Tee' | 'Oolong Tee' | 'Kräutertee' | 'Früchtetee' | 'Zubehör';
   description: string;
   image: string; // Dateiname im public/images/ Ordner
   isBestSeller: boolean;
@@ -167,5 +167,17 @@ export const products: TeaProduct[] = [
     isBestSeller: false,
     inStock: true,
     preparation: { temp: 100, time: 10, amount: "5g" }
+  },
+  {
+    id: "t-012",
+    name: "Tealinger Haferl",
+    slug: "tealinger-haferl",
+    price: 19.90,
+    category: "Zubehör",
+    description: "Einzigartiges Haferl für den vielseitigen Genuss und perfekt für einen ruhigen Nachmittag. Am beliebtesten gefüllt mit Tealinger's erstklassigem Tee",
+    image: "Haferl.png",
+    isBestSeller: true,
+    inStock: true,
+    preparation: { temp: 0, time: 0, amount: "0" }
   }
 ];
