@@ -6,12 +6,13 @@ interface Props {
 }
 
 const { product } = Astro.props;
-const imagePath = `/public/Products/${product.image}`
+const base = import.meta.env.BASE_URL;
+const imagePath = `${base}/Products/${product.image}`;
 ---
 
 <article class="product-card">
   <div class="image-container">
-    <img src={imagePath} alt={product.name} loading="lazy" />
+    <img src={imagePath} alt={product.name + "" + imagePath} loading="lazy" />
     {!product.inStock && <span class="badge out-of-stock">Ausverkauft</span>}
     {product.isBestSeller && product.inStock && <span class="badge bestseller">Bestseller</span>}
   </div>
