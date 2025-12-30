@@ -2,7 +2,6 @@
 import Layout from '../layout/Layout.astro';
 import "../styles/global.css";
 
-// Beispiel-Datenstruktur für deine Credits
 const credits = [
     {
         asset: "Sencha Tee",
@@ -147,7 +146,7 @@ const credits = [
                 <div class="border-b border-gray-200 pb-2">
                     <p class="font-semibold">{credit.asset}</p>
                     <p class="text-sm text-gray-500">
-                        Foto von <a href={credit.link} class="text-tealinger-base hover:underline" target="_blank">{credit.author}</a> 
+                        Foto von <a href={credit.link} class="text-tealinger-dark hover:underline" target="_blank">{credit.author}</a> 
                         auf {credit.platform}.
                     </p>
                 </div>
