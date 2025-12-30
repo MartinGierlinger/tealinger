@@ -1,26 +1,140 @@
 ---
+import type { TeaProduct } from '../data/products';
+
 interface Props {
-	name: string;
-	price: string;
-	description: string;
+	product: TeaProduct
 }
 
-const { name, price, description } = Astro.props;
+const { product } = Astro.props;
+const imagePath = `/src/assets/Products/${product.image}`
 ---
 
+<article class="product-card">
+  <div class="image-container">
+    <img src={imagePath} alt={product.name} loading="lazy" />
+    {!product.inStock && <span class="badge out-of-stock">Ausverkauft</span>}
+    {product.isBestSeller && product.inStock && <span class="badge bestseller">Bestseller</span>}
+  </div>
+  
+  <div class="content">
+    <span class="category">{product.category}</span>
+    <h3>{product.name}</h3>
+    <p class="description">{product.description}</p>
+    
+    <div class="footer">
+      <span class="price">{product.price.toFixed(2)} €</span>
+      <button disabled={!product.inStock}>
+        {product.inStock ? 'In den Warenkorb' : 'Bald verfügbar'}
+      </button>
+    </div>
+  </div>
+</article>
+
+<style>
+  .product-card {
+    border: 1px solid #eee;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform 0.2s;
+    background: white;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+  }
+
+  .image-container {
+    position: relative;
+    height: 200px;
+    overflow: hidden;
+  }
+
+  .image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    color: white;
+  }
+
+  .out-of-stock { background: #e74c3c; }
+  .bestseller { background: #f1c40f; color: #333; }
+
+  .content {
+    padding: 1rem;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .category {
+    font-size: 0.8rem;
+    color: #888;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  h3 { margin: 0.5rem 0; font-size: 1.2rem; }
+  
+  .description {
+    font-size: 0.9rem;
+    color: #555;
+    flex-grow: 1; /* Drückt den Footer nach unten */
+  }
+
+  .footer {
+    margin-top: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .price {
+    font-weight: bold;
+    font-size: 1.1rem;
+  }
+
+  button {
+    background: #2c3e50;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  button:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+  }
+</style>
+
+<!--
 <article class="border border-gray-200 rounded-lg p-6 shadow-sm flex flex-col">
 	<div class="w-full h-48 bg-gray-100 rounded-md mb-4 flex items-center justify-center">
-		<span class="text-gray-400">Produktbild {name}</span>
+		<span class="text-gray-400">Produktbild {product.name}</span>
 	</div>
-	<h3 class="text-xl font-bold mb-2">{name}</h3>
-	<p class="text-gray-600 mb-4 flex-grow">{description}</p>
+	<h3 class="text-xl font-bold mb-2">{product.name}</h3>
+	<p class="text-gray-600 mb-4 flex-grow">{product.description}</p>
 	<div class="flex justify-between items-center mt-auto">
-		<span class="text-lg font-semibold" aria-label={`Preis: ${price} Euro`}>{price} €</span>
+		<span class="text-lg font-semibold" aria-label={`Preis: ${product.price} Euro`}>{product.price} €</span>
 		<button 
 			class="bg-tealinger-base hover:bg-tealinger-dark text-white font-bold py-2 px-4 rounded-md focus:ring-4 focus:ring-green-300 transition-colors"
-			aria-label={`${name} in den Warenkorb legen`}
+			aria-label={`${product.name} in den Warenkorb legen`}
 		>
 			In den Warenkorb
 		</button>
 	</div>
-</article>
+</article> -->

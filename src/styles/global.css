@@ -1,1 +1,6 @@
 @import "tailwindcss";
+
+@theme {
+  --color-tealinger-base: #10b981;
+  --color-tealinger-dark: #064e3b;
+}

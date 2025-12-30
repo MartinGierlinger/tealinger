@@ -1,4 +1,7 @@
 ---
+import { Image } from 'astro:assets';
+import TealingerLogo from '../assets/Tealinger_Wortbildmarke.png'
+
 interface Props {
 	title: string;
 }
@@ -11,17 +14,17 @@ const { title } = Astro.props;
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<title>{title} | Tealinger</title>
+		<link rel="icon" type="image/svg+xml" href="/tealinger/favicon.svg" />
+		<title>Tealinger | {title}</title>
 	</head>
 	<body class="bg-white text-gray-900 leading-relaxed">
 		<a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:p-4 focus:bg-tealinger-base focus:text-white">
 			Zum Hauptinhalt springen
 		</a>
 		
-		<header class="border-b border-gray-200 py-4">
+		<header class="top-0 left-0 w-full z-50 bg-transparent">
 			<nav class="container mx-auto px-4 flex justify-between items-center" aria-label="Hauptnavigation">
-				<a href="/tealinger" class="text-2xl font-bold text-tealinger-base">Tealinger</a>
+				<a href="/tealinger" class="text-2xl font-bold text-tealinger-base"><Image width="300" height="300" src={TealingerLogo} alt="Tealinger Logo" /></a>
 				<ul class="flex gap-6">
 					<li><a href="/tealinger" class="hover:underline decoration-2 underline-offset-4">Home</a></li>
 					<li><a href="/tealinger/shop" class="hover:underline decoration-2 underline-offset-4">Shop</a></li>
