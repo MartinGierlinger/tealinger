@@ -1,2 +1,2 @@
 # Tealinger
-This is an university project and for educational purposes only
+This is a university project and only for educational purposes
