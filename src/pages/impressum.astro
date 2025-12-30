@@ -1,8 +1,71 @@
 ---
 import Layout from '../layout/Layout.astro';
 import "../styles/global.css";
+const pageTitle = "Impressum";
 ---
 
-<Layout title="Bildnachweise">
+<Layout title={pageTitle}>
+    <div class="max-w-3xl mx-auto py-8 px-4">
+        
+        <h1 class="text-4xl font-extrabold text-tealinger-dark mb-8 border-b-2 border-green-100 pb-4">Impressum</h1>
 
+        <div class="space-y-8 text-gray-700">
+            <section>
+                <h3 class="text-lg font-bold text-tealinger-dark mb-2">Medieninhaber & Herausgeber</h3>
+                <div class="space-y-1">
+                    <p><strong>Firmenname:</strong> Tealinger GmbH</p>
+                    <p><strong>Adresse:</strong> Praterstraße 302, 1020 Wien, Österreich</p>
+                    <p><strong>Unternehmensgegenstand:</strong> Handel mit Tee und Teezubehör</p>
+                    <p><strong>Geschäftsführer:</strong> Martin Gierlinger</p>
+                </div>
+            </section>
+
+            <section>
+                <h3 class="text-lg font-bold text-tealinger-dark mb-2">Kontakt</h3>
+                <div class="space-y-1">
+                    <p><strong>Telefon:</strong> +43 660 12345667</p>
+                    <p><strong>E-Mail:</strong> <a href="mailto:contact@tealinger.at" class="text-tealinger-base hover:underline">contact@tealinger.at</a></p>
+                </div>
+            </section>
+
+            <section>
+                <h3 class="text-lg font-bold text-tealinger-dark mb-2">Register & Identifikation</h3>
+                <div class="space-y-1">
+                    {/* Pflichtangaben für GmbHs nach UGB/ECG */}
+                    <p><strong>UID-Nummer:</strong> xxx</p>
+                    <p><strong>Firmenbuchnummer:</strong> xxx</p>
+                    <p><strong>Firmenbuchgericht:</strong> Handelsgericht Wien</p>
+                    <p><strong>Aufsichtsbehörde/Gewerbebehörde:</strong> Magistrat der Stadt Wien</p>
+                    <p><strong>Kammerzugehörigkeit:</strong> Wirtschaftskammer Österreich (WKO), Fachgruppe Lebensmittelhandel</p>
+                    <p><strong>Anwendbare Rechtsvorschriften:</strong> Gewerbeordnung 1994, E-Commerce-Gesetz, Mediengesetz</p>
+                </div>
+            </section>
+
+            <section>
+                <h3 class="text-lg font-bold text-tealinger-dark mb-2">Blattlinie</h3>
+                <p>
+                    Diese Webseite dient der Präsentation und dem Verkauf von Teeprodukten sowie der Information über Teekultur und Zubereitung.
+                </p>
+            </section>
+
+            <section>
+                <h3 class="text-lg font-bold text-tealinger-dark mb-2">EU-Streitschlichtung</h3>
+                <p>
+                    Verbraucher haben die Möglichkeit, Beschwerden an die Online-Streitbeilegungsplattform der EU zu richten: 
+                    <a href="https://ec.europa.eu/odr" target="_blank" rel="noopener noreferrer" class="text-tealinger-base hover:underline">https://ec.europa.eu/odr</a>. 
+                    Sie können allfällige Beschwerde auch an die oben angegebene E-Mail-Adresse richten.
+                </p>
+            </section>
+
+            <hr class="border-gray-200 my-8" />
+            
+            <section>
+                 <h3 class="text-lg font-bold text-tealinger-dark mb-2">Kontaktformular</h3>
+                <p>
+                    Wenn Sie Fragen haben, nehmen Sie bitte <a href="/tealinger/kontakt" class="text-tealinger-base hover:underline">Kontakt</a> mit uns auf.
+                </p>
+            </section>
+
+        </div>
+    </div>
 </Layout>
