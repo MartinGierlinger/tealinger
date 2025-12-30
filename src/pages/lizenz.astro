@@ -1,0 +1,47 @@
+---
+import Layout from '../layout/Layout.astro';
+import "../styles/global.css";
+
+// Beispiel-Datenstruktur für deine Credits
+const credits = [
+    {
+        asset: "Teebilder Startseite",
+        author: "Joanna Kosinska",
+        platform: "Unsplash",
+        link: "https://unsplash.com/photos/..."
+    },
+    {
+        asset: "Grüner Tee Produktbild",
+        author: "Matcha & CO",
+        platform: "Pexels",
+        link: "https://pexels.com/..."
+    }
+];
+---
+
+<Layout title="Bildnachweise">
+    <div class="max-w-3xl mx-auto py-12 px-4">
+        <h1 class="text-3xl font-bold mb-8 text-tealinger-dark">Bildnachweise</h1>
+        
+        <p class="mb-6 text-gray-600">
+            Wir verwenden Bilder von folgenden Künstlern und Plattformen:
+        </p>
+
+        <div class="space-y-4">
+            {credits.map((credit) => (
+                <div class="border-b border-gray-200 pb-2">
+                    <p class="font-semibold">{credit.asset}</p>
+                    <p class="text-sm text-gray-500">
+                        Foto von <a href={credit.link} class="text-tealinger-base hover:underline" target="_blank">{credit.author}</a> 
+                        auf {credit.platform}.
+                    </p>
+                </div>
+            ))}
+        </div>
+        
+        <div class="mt-8">
+            <h2 class="text-xl font-bold mb-4">Icons</h2>
+            <p class="text-sm text-gray-500">Icons erstellt von <a href="https://heroicons.com/" class="underline">Heroicons</a> (MIT License).</p>
+        </div>
+    </div>
+</Layout>
